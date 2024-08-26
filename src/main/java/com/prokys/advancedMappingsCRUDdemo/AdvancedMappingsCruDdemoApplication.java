@@ -7,7 +7,6 @@ import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.Lifecycle;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
@@ -39,7 +38,7 @@ public class AdvancedMappingsCruDdemoApplication {
 
 		//find the instructor
 		System.out.println("Finding instructor with id: "+id);
-		Instructor tempInstructor = appDAO.findCoursesByInstructorJoinedFetch(id);
+		Instructor tempInstructor = appDAO.findInstructorWithCoursesByIdJoinedFetch(id);
 
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("the associated courses: " + tempInstructor.getCourses());

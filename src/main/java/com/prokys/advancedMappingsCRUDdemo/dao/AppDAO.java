@@ -20,6 +20,6 @@ public interface AppDAO {
 
     List<Course> findCoursesByInstructor(int id);
 
-    Instructor findCoursesByInstructorJoinedFetch(int id);
+    Instructor findInstructorWithCoursesByIdJoinedFetch(int id);
 
 }
