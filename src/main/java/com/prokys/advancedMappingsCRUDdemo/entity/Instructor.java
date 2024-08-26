@@ -1,7 +1,9 @@
 package com.prokys.advancedMappingsCRUDdemo.entity;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.EnableMBeanExport;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // annotate the class and entity and map to db table
 @Entity
@@ -27,6 +29,9 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
+
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Course> courses;
 
     // create constructors
 
@@ -81,6 +86,14 @@ public class Instructor {
         this.instructorDetail = instructorDetail;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
     // generate .toString()
 
     @Override
@@ -92,5 +105,15 @@ public class Instructor {
                 ", email='" + email + '\'' +
                 ", instructorDetail=" + instructorDetail +
                 '}';
+    }
+
+    public void add(Course tempCourse){
+        if (courses == null){
+            courses = new ArrayList<>();
+        }
+
+        courses.add(tempCourse);
+
+        tempCourse.setInstructor(this);
     }
 }
