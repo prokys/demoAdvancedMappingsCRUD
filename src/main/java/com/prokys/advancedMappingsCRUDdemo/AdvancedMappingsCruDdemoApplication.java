@@ -7,7 +7,10 @@ import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.Lifecycle;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class AdvancedMappingsCruDdemoApplication {
@@ -25,8 +28,29 @@ public class AdvancedMappingsCruDdemoApplication {
 //			findInstructorDetail(appDAO);
 //			deleteInstructorDetail(appDAO);
 //			createInstructorWithCourses(appDAO);
-			findInstructorWithCourses(appDAO);
+//			findInstructorWithCourses(appDAO);
+			findCoursesForInstructor(appDAO);
 		};
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor id: " + id);
+
+		Instructor tempInstructor = appDAO.findInstructorById(id);
+
+		System.out.println("tempInstructor: "+tempInstructor);
+
+		// find courses for instructor
+		System.out.println("Finding courses for instructor id: "+id);
+		List<Course> courses = appDAO.findCoursesByInstructor(id);
+
+		// associate courses to instructor
+		tempInstructor.setCourses(courses);
+
+		System.out.println("the associated courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done");
 	}
 
 	private void findInstructorWithCourses(AppDAO appDAO) {
