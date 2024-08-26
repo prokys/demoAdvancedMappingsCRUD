@@ -56,7 +56,6 @@ public class InstructorDetail {
         this.hobby = hobby;
     }
 
-    // generate .toString()
 
 
     @Override
