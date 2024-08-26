@@ -2,10 +2,12 @@ package com.prokys.advancedMappingsCRUDdemo.entity;
 
 import jakarta.persistence.*;
 
+@Entity
 @Table(name = "course")
 public class Course {
 
     //define fields and annotate them
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

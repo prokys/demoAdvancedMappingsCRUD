@@ -1,6 +1,7 @@
 package com.prokys.advancedMappingsCRUDdemo;
 
 import com.prokys.advancedMappingsCRUDdemo.dao.AppDAO;
+import com.prokys.advancedMappingsCRUDdemo.entity.Course;
 import com.prokys.advancedMappingsCRUDdemo.entity.Instructor;
 import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -19,11 +20,40 @@ public class AdvancedMappingsCruDdemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 //			createInstructor(appDAO);
-			//findInstructor(appDAO);
+//			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+//			deleteInstructorDetail(appDAO);
+			createInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+
+		//create instructor
+		Instructor tempInstructor = new Instructor("Susan", "Public", "public@luv2code.com");
+
+		//create instructor detail
+		InstructorDetail tempInstructorDetail = new InstructorDetail("http://youtube.com", "Video games");
+
+		//associate the objects
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		//create courses
+		Course tempCourse1 = new Course("Air guitar - The ultimate guide");
+		Course tempCourse2 = new Course("The pinball masterclass");
+
+		//add courses to instructor
+		tempInstructor.add(tempCourse1);
+		tempInstructor.add(tempCourse2);
+
+		//save instructor
+		//this will also save courses because of CascadeType.PERSIST
+		System.out.println("Saving instructor: "+tempInstructor);
+		System.out.println("The courses: "+tempInstructor.getCourses());
+		appDAO.save(tempInstructor);
+
+		System.out.println("Done");
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
