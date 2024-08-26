@@ -1,6 +1,7 @@
 package com.prokys.advancedMappingsCRUDdemo.dao;
 
 import com.prokys.advancedMappingsCRUDdemo.entity.Instructor;
+import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,5 +39,10 @@ public class AppDAOImpl implements AppDAO{
 
         //delete instructor
         entityManager.remove(tempInstructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int id) {
+        return entityManager.find(InstructorDetail.class, id);
     }
 }
