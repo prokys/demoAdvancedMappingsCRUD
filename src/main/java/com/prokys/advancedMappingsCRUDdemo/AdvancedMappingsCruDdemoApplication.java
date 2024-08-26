@@ -18,7 +18,7 @@ public class AdvancedMappingsCruDdemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			//createInstructor(appDAO);
+//			createInstructor(appDAO);
 			//findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
@@ -27,7 +27,7 @@ public class AdvancedMappingsCruDdemoApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
-		int theId = 2;
+		int theId = 3;
 		System.out.println("Deleting the instructor detail: " + theId);
 
 		appDAO.deleteInstructorDetailByID(theId);
