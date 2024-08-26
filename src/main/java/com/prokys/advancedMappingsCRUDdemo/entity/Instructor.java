@@ -24,7 +24,7 @@ public class Instructor {
     @Column(name = "email")
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
