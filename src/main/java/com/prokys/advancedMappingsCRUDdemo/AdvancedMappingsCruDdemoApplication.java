@@ -1,10 +1,7 @@
 package com.prokys.advancedMappingsCRUDdemo;
 
 import com.prokys.advancedMappingsCRUDdemo.dao.AppDAO;
-import com.prokys.advancedMappingsCRUDdemo.entity.Course;
-import com.prokys.advancedMappingsCRUDdemo.entity.Instructor;
-import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
-import com.prokys.advancedMappingsCRUDdemo.entity.Review;
+import com.prokys.advancedMappingsCRUDdemo.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,8 +34,40 @@ public class AdvancedMappingsCruDdemoApplication {
 //			deleteCourseById(appDAO);
 //			createCourseAndReviews(appDAO);
 //			retrieveCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+//			deleteCourseAndReviews(appDAO);
+//			createCourseAndStudents(appDAO);
+			findCourseAndStudents(appDAO);
 		};
+	}
+
+	private void findCourseAndStudents(AppDAO appDAO) {
+		int id = 10;
+		Course tempCourse = appDAO.findCourseAndStudentsByCourseId(id);
+
+		System.out.println("Loaded course: " + tempCourse);
+		System.out.println("Students: " + tempCourse.getStudents());
+
+		System.out.println("Done");
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+
+		// create a course
+		Course tempCourse = new Course("Pacman - How to score million points");
+
+		// create the students
+		Student tempStudent1 = new Student("John", "Doe", "doe@luv2code.com");
+		Student tempStudent2 = new Student("Mary", "Public", "public@luv2code.com");
+
+		// add students to the course
+		tempCourse.addStudent(tempStudent1);
+		tempCourse.addStudent(tempStudent2);
+
+		// save the course and associated students
+		System.out.println("Saving course: " + tempCourse);
+		System.out.println("Associated students: "+tempCourse.getStudents());
+		appDAO.saveCourse(tempCourse);
+
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
