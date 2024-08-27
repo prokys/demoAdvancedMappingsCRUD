@@ -2,6 +2,9 @@ package com.prokys.advancedMappingsCRUDdemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -20,6 +23,10 @@ public class Student {
 
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "course_student", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses;
 
     //generate constructors
 
@@ -65,7 +72,14 @@ public class Student {
         this.email = email;
     }
 
-    //generate toString
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+//generate toString
 
     @Override
     public String toString() {
@@ -75,5 +89,12 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void addCourses(Course course){
+        if (courses == null){
+            courses = new ArrayList<>();
+        }
+        courses.add(course);
     }
 }
