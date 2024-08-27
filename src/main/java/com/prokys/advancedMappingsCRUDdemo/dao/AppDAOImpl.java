@@ -3,6 +3,7 @@ package com.prokys.advancedMappingsCRUDdemo.dao;
 import com.prokys.advancedMappingsCRUDdemo.entity.Course;
 import com.prokys.advancedMappingsCRUDdemo.entity.Instructor;
 import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
+import com.prokys.advancedMappingsCRUDdemo.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,5 +162,19 @@ public class AppDAOImpl implements AppDAO{
         Course course = query.getSingleResult();
 
         return course;
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int id) {
+
+        // create query
+        TypedQuery<Student> query = entityManager.createQuery("SELECT s FROM Student s JOIN FETCH s.courses WHERE s.id = :data", Student.class);
+        query.setParameter("data", id);
+
+        // execute query
+        Student student = query.getSingleResult();
+
+        return student;
+
     }
 }

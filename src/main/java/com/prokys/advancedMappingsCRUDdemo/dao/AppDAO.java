@@ -3,6 +3,7 @@ package com.prokys.advancedMappingsCRUDdemo.dao;
 import com.prokys.advancedMappingsCRUDdemo.entity.Course;
 import com.prokys.advancedMappingsCRUDdemo.entity.Instructor;
 import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
+import com.prokys.advancedMappingsCRUDdemo.entity.Student;
 
 import java.util.List;
 
@@ -35,5 +36,7 @@ public interface AppDAO {
     Course findCourseAndReviewsByCourseId(int id);
 
     Course findCourseAndStudentsByCourseId(int id);
+
+    Student findStudentAndCoursesByStudentId(int id);
 
 }
