@@ -4,6 +4,7 @@ import com.prokys.advancedMappingsCRUDdemo.dao.AppDAO;
 import com.prokys.advancedMappingsCRUDdemo.entity.Course;
 import com.prokys.advancedMappingsCRUDdemo.entity.Instructor;
 import com.prokys.advancedMappingsCRUDdemo.entity.InstructorDetail;
+import com.prokys.advancedMappingsCRUDdemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,7 +35,28 @@ public class AdvancedMappingsCruDdemoApplication {
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
 //			deleteCourseById(appDAO);
+			createCourseAndReviews(appDAO);
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+
+		//create course
+		Course tempCourse = new Course("Pacman - How to score one million points");
+
+		//add reviews
+		tempCourse.addReview(new Review("Great course ... loved it"));
+		tempCourse.addReview(new Review("Cool course, job well done"));
+		tempCourse.addReview(new Review("What a dump course, you are an idiot"));
+
+		//save the course, and reviews with cascade all
+		System.out.println("Saving the course");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+
+		appDAO.saveCourse(tempCourse);
+
+		System.out.println("Done");
 	}
 
 	private void deleteCourseById(AppDAO appDAO) {
