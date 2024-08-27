@@ -31,7 +31,8 @@ public class AdvancedMappingsCruDdemoApplication {
 //			findCoursesForInstructor(appDAO);
 //			findInstructorWithCoursesJoinFetch(appDAO);
 //			updateInstructor(appDAO);
-			updateCourse(appDAO);
+//			updateCourse(appDAO);
+			deleteInstructor(appDAO);
 		};
 	}
 
@@ -165,7 +166,7 @@ public class AdvancedMappingsCruDdemoApplication {
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
-		int theId = 2;
+		int theId = 1;
 
 		System.out.println("Deleting Instructor with id: " + theId);
 
