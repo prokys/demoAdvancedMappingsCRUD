@@ -33,7 +33,7 @@ public class AdvancedMappingsCruDdemoApplication {
 //			updateInstructor(appDAO);
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
-			deleteCourseById(appDAO);
+//			deleteCourseById(appDAO);
 		};
 	}
 
