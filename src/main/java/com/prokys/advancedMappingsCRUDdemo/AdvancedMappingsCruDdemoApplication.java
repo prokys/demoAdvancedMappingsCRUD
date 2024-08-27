@@ -37,8 +37,30 @@ public class AdvancedMappingsCruDdemoApplication {
 //			deleteCourseAndReviews(appDAO);
 //			createCourseAndStudents(appDAO);
 //			findCourseAndStudents(appDAO);
-			findStudentAndCourses(appDAO);
+//			findStudentAndCourses(appDAO);
+			addMoreCoursesForStudent(appDAO);
 		};
+	}
+
+	private void addMoreCoursesForStudent(AppDAO appDAO) {
+
+		int id = 2;
+		Student tempStudent = appDAO.findStudentAndCoursesByStudentId(id);
+
+		//create more courses
+		Course tempCourse1 = new Course("Rubiks cube - How to speed cube");
+		Course tempCourse2 = new Course("Atari 2600 - game development");
+
+		//add courses to student
+		tempStudent.addCourses(tempCourse1);
+		tempStudent.addCourses(tempCourse2);
+
+		System.out.println("Updating student: " + tempStudent);
+		System.out.println("Associated courses: " + tempStudent.getCourses());
+
+		appDAO.update(tempStudent);
+
+		System.out.println("Done");
 	}
 
 	private void findStudentAndCourses(AppDAO appDAO) {
